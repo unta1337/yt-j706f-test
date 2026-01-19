@@ -1,0 +1,15 @@
+diff --git a/drivers/hid/hid-input.c b/drivers/hid/hid-input.c
+index 65246aec55ea..43dbea6e53b3 100644
+--- a/drivers/hid/hid-input.c
++++ b/drivers/hid/hid-input.c
+@@ -1355,7 +1355,10 @@ void hidinput_report_event(struct hid_device *hid, struct hid_report *report)
+ 		return;
+ 
+ 	list_for_each_entry(hidinput, &hid->inputs, list)
++    {
++        printk(KERN_ERR "%s +++++++++++ hidinput->input->name = %s, hidinput->input->keycode = %d\n", hidinput->input->name, hidinput->input->keycode);
+ 		input_sync(hidinput->input);
++    }
+ }
+ EXPORT_SYMBOL_GPL(hidinput_report_event);
+ 
