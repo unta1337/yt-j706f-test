@@ -55,11 +55,17 @@ fi
 rm -rf $cpio_dir
 mkdir $cpio_dir
 
+echo "==== begin dbg ===="
+set -x
+
 pushd $srctree > /dev/null
 for f in $dir_list;
 	do find "$f" -name "*.h";
 done | $cpio --quiet -pd $cpio_dir
 popd > /dev/null
+
+set +x
+echo "==== end dbg ===="
 
 # The second CPIO can complain if files already exist which can
 # happen with out of tree builds. Just silence CPIO for now.
