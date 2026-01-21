@@ -545,17 +545,20 @@ static int battery_get_property(struct power_supply *psy,
 			}
 		}
 		if(batt_maintenance_mode ==1) {
-			val->intval = (int)(val->intval * 1.08);
+			// val->intval = (int)(val->intval * 1.08);
+			val->intval = val->intval * 108 / 100;
 			if(val->intval > 100)
 				val->intval = 100;
 			bm_debug("batt_maintenance_mode1:%d,mtk fg_get_capacity=%d\n", batt_maintenance_mode,val->intval);
 		} else if (batt_maintenance_mode ==2) {
-			val->intval = (int)(val->intval * 1.13);
+			// val->intval = (int)(val->intval * 1.13);
+			val->intval = val->intval * 113 / 100;
 			if(val->intval > 100)
 				val->intval = 100;
 			bm_debug("batt_maintenance_mode2:%d,mtk fg_get_capacity=%d\n", batt_maintenance_mode,val->intval);
 		} else if (batt_maintenance_mode == 3) {
-			val->intval = (int)(val->intval * 1.28);
+			// val->intval = (int)(val->intval * 1.28);
+			val->intval = val->intval * 128 / 100;
 			if(val->intval > 100)
 				val->intval = 100;
 			bm_debug("batt_maintenance_mode3:%d,mtk fg_get_capacity=%d\n", batt_maintenance_mode,val->intval);
